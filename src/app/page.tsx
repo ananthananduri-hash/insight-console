@@ -2,6 +2,7 @@ import { getAllPosts } from "@/lib/posts";
 import PreferenceBanner from "@/components/PreferenceBanner";
 import PersonalizedFeed from "@/components/PersonalizedFeed";
 import ConsoleReadouts from "@/components/ConsoleReadouts";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export default function Home() {
   const posts = getAllPosts();
@@ -37,6 +38,10 @@ export default function Home() {
 
       <PreferenceBanner />
       <PersonalizedFeed posts={posts} />
+
+      <section className="mt-14 mb-4">
+        <NewsletterForm />
+      </section>
     </div>
   );
 }
