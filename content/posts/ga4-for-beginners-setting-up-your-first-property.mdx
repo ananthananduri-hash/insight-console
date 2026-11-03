@@ -1,0 +1,45 @@
+---
+title: "GA4 for Beginners: Setting Up Your First Property the Right Way"
+description: "A step-by-step walkthrough of creating a Google Analytics 4 property, wiring up the install, and avoiding the mistakes most beginners make in week one."
+date: "2026-10-30"
+pillar: "analytics"
+tags: ["GA4", "Google Analytics", "tutorial"]
+---
+
+If you're setting up Google Analytics 4 for the first time, the biggest mistake isn't a missing snippet — it's skipping the decisions that are hard to undo later: how your property is structured, what counts as a conversion, and whether your data is clean from day one.
+
+## 1. Create the property, not just the account
+
+A Google Analytics **account** can hold multiple **properties**. If this is a personal project, one account with one property is fine. If you're setting this up for an employer or client, create a dedicated property under their account — never bury a client's data inside your personal account.
+
+## 2. Pick your data stream correctly
+
+For a blog, you'll add a **Web** data stream. GA4 will generate a Measurement ID (`G-XXXXXXX`) — this is what ties your site's traffic to this specific property. Keep this ID somewhere safe; you'll need it for the install and for connecting Search Console later.
+
+## 3. Install it once, correctly
+
+There are three common ways to install GA4:
+
+- **gtag.js snippet** directly in your site's `<head>` — simplest for a small static site
+- **Google Tag Manager** — more setup up front, but lets you manage tags without redeploying code later
+- **Framework-native integration** (e.g., a Next.js GA4 component) — cleanest if you're already shipping code regularly
+
+For a portfolio project like this blog, Google Tag Manager is worth the extra 20 minutes: it means your first AdSense tag, your first conversion pixel, and any future experiment doesn't require touching code again.
+
+## 4. Define your key events before you need them
+
+GA4 tracks events, not just pageviews. Before you publish your first post, decide what actually matters:
+
+- Scroll depth past 75% (signals real reading, not a bounce)
+- Outbound link clicks (useful once you add affiliate or resource links)
+- Time on page past a meaningful threshold
+
+Mark these as **key events** (GA4's version of conversions) so your reports highlight them instead of burying them in raw event counts.
+
+## 5. Don't trust day-one data
+
+GA4 takes 24–48 hours to fully populate standard reports. Use **Realtime** to confirm the install is firing, but don't make decisions off it. Give it a few days before you trust any trend.
+
+---
+
+This is article one of an ongoing series documenting the GA4 setup for this exact blog — real screenshots and real numbers will follow as traffic comes in.
