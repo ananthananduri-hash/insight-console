@@ -31,6 +31,7 @@ export default function NewsletterForm({
       }
       setStatus("success");
       setEmail("");
+      window.gtag?.("event", "newsletter_signup");
     } catch {
       setStatus("error");
       setMessage("Network error — try again.");
