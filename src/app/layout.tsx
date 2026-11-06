@@ -1,9 +1,32 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { Chakra_Petch, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import ConsentBanner from "@/components/ConsentBanner";
+
+const chakraPetch = Chakra_Petch({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-chakra-petch",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
+
+const plexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -16,14 +39,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased" data-theme="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`h-full antialiased ${chakraPetch.variable} ${plexMono.variable} ${plexSans.variable}`}
+      data-theme="dark"
+    >
       <body className="min-h-full flex flex-col">
         <Suspense fallback={null}>
           <GoogleAnalytics />
@@ -31,6 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ConsentBanner />
       </body>
     </html>
   );

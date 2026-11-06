@@ -31,7 +31,7 @@ export default async function BlogIndex({
   return (
     <div className="mx-auto max-w-3xl px-6 py-14">
       <div className="section-label mb-2">
-        <span className="n">//</span> {heading.toUpperCase()} <span className="rule" />
+        <span className="n">{"//"}</span> {heading.toUpperCase()} <span className="rule" />
       </div>
       {posts.length === 0 ? (
         <p style={{ color: "var(--text-secondary)", marginTop: "16px" }}>No posts yet in this category.</p>

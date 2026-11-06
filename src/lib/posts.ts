@@ -53,6 +53,7 @@ export function getPostBySlug(slug: string): Post {
 export function getAllPosts(): PostMeta[] {
   return getAllSlugs()
     .map((slug) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars -- discarding `content` on purpose
       const { content: _content, ...meta } = getPostBySlug(slug);
       return meta;
     })

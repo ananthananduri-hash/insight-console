@@ -53,7 +53,7 @@ export default function NewsletterForm({
     <div className={compact ? "" : "hud-panel px-7 py-8"}>
       {!compact && (
         <div className="section-label mb-4">
-          <span className="n">//</span> SUBSCRIBE <span className="rule" />
+          <span className="n">{"//"}</span> SUBSCRIBE <span className="rule" />
         </div>
       )}
       <h3

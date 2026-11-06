@@ -34,6 +34,8 @@ export default function PreferenceBanner() {
   const [preference, setPreference] = useState<StoredPreference>(null);
 
   useEffect(() => {
+    // Reads localStorage, so it must run post-hydration, client-side only.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPreference(getStoredPreference());
     setLoaded(true);
   }, []);

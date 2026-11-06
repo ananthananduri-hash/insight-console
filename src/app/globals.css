@@ -15,9 +15,9 @@
   --text-secondary: #85a0ab;
   --text-tertiary: #4c6069;
 
-  --font-display: "Chakra Petch", "Segoe UI", sans-serif;
-  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+  --font-display: var(--font-chakra-petch), "Segoe UI", sans-serif;
+  --font-body: var(--font-plex-sans), "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), "Courier New", monospace;
 }
 
 @theme inline {

@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-14">
       <div className="section-label mb-6">
-        <span className="n">//</span> OPERATOR PROFILE <span className="rule" />
+        <span className="n">{"//"}</span> OPERATOR PROFILE <span className="rule" />
       </div>
       <h1
         style={{

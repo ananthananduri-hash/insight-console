@@ -16,7 +16,10 @@ export default function AudioNarration({
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+    // One-time feature-detection on mount; must run client-side only, so it
+    // can't be computed during render without a server/client markup mismatch.
+    if (!("speechSynthesis" in window)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStatus("unsupported");
     }
     return () => {
@@ -24,7 +27,6 @@ export default function AudioNarration({
         window.speechSynthesis.cancel();
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const buildUtterance = () => {

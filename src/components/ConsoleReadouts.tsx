@@ -17,6 +17,8 @@ export default function ConsoleReadouts({ postCount }: { postCount: number }) {
   const [preference, setPreference] = useState<StoredPreference>(null);
 
   useEffect(() => {
+    // Reads localStorage, so it must run post-hydration, client-side only.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPreference(getStoredPreference());
     const onChange = () => setPreference(getStoredPreference());
     window.addEventListener(PREFERENCE_EVENT, onChange);
