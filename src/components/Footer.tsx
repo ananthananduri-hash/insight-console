@@ -11,7 +11,7 @@ export default function Footer() {
           color: "var(--text-tertiary)",
         }}
       >
-        <span>Measured Notes &mdash; analytics, career, healthcare</span>
+        <span>Insight Console &mdash; analytics, career, healthcare</span>
         <span>Built with Next.js</span>
       </div>
     </footer>

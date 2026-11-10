@@ -16,7 +16,7 @@ export default function Header() {
         <span>
           <span className="dot" />
           <Link href="/" style={{ fontFamily: "var(--font-display)", fontWeight: 600, letterSpacing: "0.04em" }}>
-            MEASURED NOTES
+            INSIGHT CONSOLE
           </Link>
         </span>
         <nav>

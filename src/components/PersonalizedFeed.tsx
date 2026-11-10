@@ -73,7 +73,7 @@ export default function PersonalizedFeed({ posts }: { posts: PostMeta[] }) {
                 textTransform: "uppercase",
               }}
             >
-              More from Measured Notes
+              More from Insight Console
             </div>
           )}
           <div>

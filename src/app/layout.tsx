@@ -30,8 +30,8 @@ const plexSans = IBM_Plex_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Measured Notes",
-    template: "%s | Measured Notes",
+    default: "Insight Console",
+    template: "%s | Insight Console",
   },
   description:
     "Marketing analytics tutorials, career notes from a job search in analytics, and healthcare marketing analytics — written in public.",
