@@ -15,26 +15,29 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
   }
 
-  const apiKey = process.env.CONVERTKIT_API_KEY;
-  const formId = process.env.CONVERTKIT_FORM_ID;
+  const apiKey = process.env.KIT_API_KEY;
+  const formId = process.env.KIT_FORM_ID;
 
   if (!apiKey || !formId) {
     return NextResponse.json(
-      { error: "Newsletter isn't configured yet — missing ConvertKit credentials." },
+      { error: "Newsletter isn't configured yet — missing Kit credentials." },
       { status: 503 },
     );
   }
 
-  const res = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
+  const res = await fetch(`https://api.kit.com/v4/forms/${formId}/subscribers`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ api_key: apiKey, email }),
+    headers: {
+      "Content-Type": "application/json",
+      "X-Kit-Api-Key": apiKey,
+    },
+    body: JSON.stringify({ email_address: email }),
   });
 
   if (!res.ok) {
     const detail = await res.json().catch(() => null);
     return NextResponse.json(
-      { error: detail?.message ?? "Subscription failed. Try again in a moment." },
+      { error: detail?.errors?.[0] ?? detail?.message ?? "Subscription failed. Try again in a moment." },
       { status: 502 },
     );
   }
