@@ -3,99 +3,80 @@ import { getAllPosts } from "@/lib/posts";
 import PreferenceBanner from "@/components/PreferenceBanner";
 import PersonalizedFeed from "@/components/PersonalizedFeed";
 import NewsletterForm from "@/components/NewsletterForm";
-import treeOfLife from "../../public/images/tree-of-life.jpg";
+import headshot from "../../public/images/headshot.jpg";
 
 export default function Home() {
   const posts = getAllPosts();
 
   return (
     <div>
-      <section
-        style={{
-          background: "#05060a",
-          padding: "64px 24px 56px",
-          textAlign: "center",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "11px",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color: "var(--gold-ember, #ff9b4d)",
-            margin: "0 0 18px",
-          }}
-        >
-          A living record, written in public
-        </p>
-        <h1
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 600,
-            fontSize: "clamp(30px, 4.6vw, 48px)",
-            lineHeight: 1.16,
-            textWrap: "balance",
-            maxWidth: "16ch",
-            margin: "0 auto",
-            color: "var(--text-primary)",
-          }}
-        >
-          Every insight{" "}
-          <span
+      <section className="hero-split">
+        <div>
+          <p
             style={{
-              background: "linear-gradient(90deg, #ffe0a3, #ffc168)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              color: "transparent",
+              fontFamily: "var(--font-mono)",
+              fontSize: "11px",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "var(--text-tertiary)",
+              margin: "0 0 20px",
             }}
           >
-            takes root
-          </span>
-          .
-        </h1>
-
-        <div style={{ maxWidth: "720px", margin: "40px auto 0" }}>
+            Marketing analytics &middot; written in public
+          </p>
+          <h1
+            style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 600,
+              fontSize: "clamp(30px, 4.2vw, 46px)",
+              lineHeight: 1.14,
+              letterSpacing: "-0.01em",
+              textWrap: "balance",
+              margin: "0 0 22px",
+              color: "var(--text-primary)",
+            }}
+          >
+            Every insight, built <em style={{ fontStyle: "italic", fontWeight: 500 }}>in the open</em>.
+          </h1>
+          <p
+            style={{
+              fontSize: "16.5px",
+              lineHeight: 1.75,
+              color: "var(--text-secondary)",
+              maxWidth: "48ch",
+              margin: "0 0 28px",
+            }}
+          >
+            I document <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>real GA4 setups</strong>,
+            an active <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>job search in marketing
+            analytics</strong>, and the niche most marketing blogs skip &mdash;{" "}
+            <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>healthcare analytics</strong>.
+            Nothing here is hypothetical.
+          </p>
+          <a
+            href="#feed"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "var(--text-primary)",
+              borderBottom: "2px solid var(--text-primary)",
+              paddingBottom: "3px",
+            }}
+          >
+            Read the latest post &rarr;
+          </a>
+        </div>
+        <div className="photo-frame">
           <Image
-            src={treeOfLife}
-            alt="A golden, glowing tree of life against a starry night sky"
-            sizes="(max-width: 768px) 100vw, 720px"
-            style={{ width: "100%", height: "auto", display: "block" }}
+            src={headshot}
+            alt="Anantha Nanduri"
+            sizes="(max-width: 760px) 320px, 420px"
             priority
           />
         </div>
-
-        <p
-          style={{
-            fontSize: "16px",
-            lineHeight: 1.7,
-            color: "var(--text-secondary)",
-            maxWidth: "46ch",
-            margin: "40px auto 26px",
-          }}
-        >
-          Marketing analytics, career notes, and healthcare analytics &mdash;
-          grown one post at a time, out in the open.
-        </p>
-        <a
-          href="#feed"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "10px",
-            fontFamily: "var(--font-mono)",
-            fontSize: "12px",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "#05060a",
-            background: "linear-gradient(90deg, #ffe0a3, #ffc168)",
-            padding: "13px 22px",
-            borderRadius: "2px",
-            boxShadow: "0 0 28px rgba(255, 193, 104, 0.35)",
-          }}
-        >
-          Enter the console &rarr;
-        </a>
       </section>
 
       <div className="mx-auto max-w-3xl px-6 py-10" id="feed">

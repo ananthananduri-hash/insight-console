@@ -69,12 +69,12 @@ export default async function BlogPost({
       />
 
       {post.heroVisual === "monk-neem-tree" && (
-        <div className="mb-10">
+        <div className="mb-10 grayscale-media">
           <MonkUnderNeemTreeScene />
         </div>
       )}
       {post.heroVisual === "dividing-cell" && (
-        <div className="mb-10">
+        <div className="mb-10 grayscale-media">
           <DividingCellScene />
         </div>
       )}
