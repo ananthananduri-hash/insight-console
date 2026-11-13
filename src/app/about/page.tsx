@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import headshot from "../../../public/images/headshot.jpg";
 
 export const metadata: Metadata = {
   title: "About",
@@ -13,17 +15,38 @@ export default function AboutPage() {
       <div className="section-label mb-6">
         ABOUT <span className="rule" />
       </div>
-      <h1
-        style={{
-          fontFamily: "var(--font-display)",
-          fontWeight: 600,
-          fontSize: "32px",
-          color: "var(--text-primary)",
-          margin: "0 0 24px",
-        }}
-      >
-        About
-      </h1>
+      <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "24px" }}>
+        <div
+          style={{
+            width: "64px",
+            height: "64px",
+            borderRadius: "50%",
+            overflow: "hidden",
+            border: "1px solid var(--border)",
+            flexShrink: 0,
+          }}
+        >
+          <Image
+            src={headshot}
+            alt="Anantha Nanduri"
+            width={64}
+            height={64}
+            className="grayscale-media"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
+        <h1
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 600,
+            fontSize: "32px",
+            color: "var(--text-primary)",
+            margin: 0,
+          }}
+        >
+          About
+        </h1>
+      </div>
       <div className="hud-prose" style={{ maxWidth: "65ch" }}>
         <p>
           I&apos;m Anantha Nanduri (
