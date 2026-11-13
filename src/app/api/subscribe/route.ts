@@ -25,17 +25,35 @@ export async function POST(request: Request) {
     );
   }
 
-  const res = await fetch(`https://api.kit.com/v4/forms/${formId}/subscribers`, {
+  const headers = {
+    "Content-Type": "application/json",
+    "X-Kit-Api-Key": apiKey,
+  };
+
+  // Kit's "add to form" endpoint only accepts subscribers that already
+  // exist on the account, so a new subscriber has to be created first.
+  const createRes = await fetch("https://api.kit.com/v4/subscribers", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Kit-Api-Key": apiKey,
-    },
+    headers,
     body: JSON.stringify({ email_address: email }),
   });
 
-  if (!res.ok) {
-    const detail = await res.json().catch(() => null);
+  if (!createRes.ok) {
+    const detail = await createRes.json().catch(() => null);
+    return NextResponse.json(
+      { error: detail?.errors?.[0] ?? detail?.message ?? "Subscription failed. Try again in a moment." },
+      { status: 502 },
+    );
+  }
+
+  const addRes = await fetch(`https://api.kit.com/v4/forms/${formId}/subscribers`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ email_address: email }),
+  });
+
+  if (!addRes.ok) {
+    const detail = await addRes.json().catch(() => null);
     return NextResponse.json(
       { error: detail?.errors?.[0] ?? detail?.message ?? "Subscription failed. Try again in a moment." },
       { status: 502 },
