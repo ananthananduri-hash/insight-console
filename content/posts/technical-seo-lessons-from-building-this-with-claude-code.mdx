@@ -1,0 +1,44 @@
+---
+title: "What Building This Blog's Technical SEO With Claude Code Taught Me"
+description: "I used Claude Code and Vercel to build out this site's technical SEO and AEO foundation. Here's what actually mattered, and what was just noise."
+date: "2026-11-13"
+pillar: "analytics"
+tags: ["technical SEO", "AEO", "Vercel", "Claude Code"]
+tldr: "I built this blog's technical SEO and AEO foundation using Claude Code, deployed on Vercel. The AI tooling didn't replace the decisions — it compressed the time between deciding something and having it shipped and measurable. The parts that actually moved the needle: a correct sitemap and canonical tags, Core Web Vitals instrumented from day one instead of bolted on later, Consent Mode v2 done properly instead of a cookie banner for show, and a plain-language llms.txt file written specifically for AI answer engines, not just search crawlers. The lesson isn't 'AI builds your SEO for you' — it's that AI tooling only removes the implementation tax, so the SEO strategy still has to be yours."
+---
+
+I'll say the obvious thing first so we can get past it: I did not discover some secret by pointing Claude Code at Vercel. What I got was something more useful and less exciting — the implementation tax on good technical SEO dropped close to zero, which meant I actually did the parts I'd normally have talked myself out of.
+
+Here's what that looked like in practice, and which pieces were worth the time.
+
+## The boring stuff that actually matters
+
+Technical SEO content online skews toward exotic tactics. The parts that moved the needle on this site were not exotic:
+
+- **A sitemap and robots.txt that are actually correct.** Mine silently pointed at `example.com` for days because an environment variable was never set in production. No amount of content strategy fixes a sitemap that's lying to Google about your own domain.
+- **Canonical tags on every post**, set explicitly rather than assumed, so syndication or accidental duplicate routes don't split authority across two URLs.
+- **Structured data (JSON-LD)** on every article — headline, description, publish date, author — so search engines don't have to guess what kind of page this is.
+
+None of this needed AI judgment. It needed someone to actually do it instead of deferring it, and that's the part Claude Code sped up — writing and wiring the route handlers, the metadata exports, the JSON-LD blocks, correctly, on the first pass, instead of the usual two hours of trial and error with Next.js's metadata API.
+
+## Core Web Vitals, measured from day one
+
+The mistake I see most often — and almost made myself — is treating Core Web Vitals as a launch-week audit instead of an ongoing signal. I wired up the `web-vitals` package to report CLS, INP, LCP, FCP, and TTFB straight into GA4 as custom events before the site had a single real visitor. That means the first real user's experience is already data, not a guess I make three months from now when something feels slow.
+
+Self-hosting fonts through `next/font` instead of loading them from Google's CDN directly also matters more than it sounds — it removes a render-blocking request and a third-party dependency from the critical path, for close to zero effort once you know to ask for it.
+
+## Consent Mode v2, done properly
+
+I implemented Google's Consent Mode v2 with a real default-denied state that only updates after a visitor actually interacts with the consent banner — not a banner that's cosmetic while tracking fires regardless. This matters for two separate reasons: it's the compliant way to do it, and Google has started using consent signals as an input to how it models conversions when consent is withheld. Get this wrong and you're both out of compliance and quietly degrading your own data quality.
+
+## The part most technical SEO content skips: AEO
+
+Technical SEO advice is still mostly written for a world where Googlebot is the only reader that matters. Increasingly, it isn't. I added an `llms.txt` file — a plain-language index of every post on this site, written for the AI systems that now answer questions by reading and summarizing pages directly, rather than just ranking them.
+
+This is the actual shift behind AEO and GEO as disciplines: the audience for your markup isn't just a search index anymore, it's a model deciding whether to cite you in an answer. Writing for both at once — crawler-friendly structure *and* a clear, quotable plain-language summary — is the new baseline, not an optional extra.
+
+## What I'd tell someone about to do the same thing
+
+Claude Code and Vercel made the feedback loop between "I should fix this" and "this is live and measurable" nearly instant. That's genuinely valuable. But it's worth being precise about what it did and didn't do: it didn't decide that Core Web Vitals needed instrumenting on day one, that Consent Mode had to be real instead of cosmetic, or that an `llms.txt` file was worth writing before the site had any traffic to speak of. Those were calls I made because of what I'd learned setting up [GA4 the slow, careful way](/blog/ga4-for-beginners-setting-up-your-first-property) — the tooling just meant I could act on the call the same afternoon instead of the same quarter.
+
+If you're newer to this, I'd still start where I started: get the [GA4 property structure right first](/blog/ga4-for-beginners-setting-up-your-first-property), then layer technical SEO on top of clean data instead of around it.
