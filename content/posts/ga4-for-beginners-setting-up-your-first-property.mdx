@@ -4,6 +4,7 @@ description: "A step-by-step walkthrough of creating a Google Analytics 4 proper
 date: "2026-10-30"
 pillar: "analytics"
 tags: ["GA4", "Google Analytics", "tutorial"]
+tldr: "Setting up GA4 for the first time goes wrong on decisions that are hard to undo later, not a missing snippet. Create a dedicated property (not just an account) if this is for an employer or client. Add a Web data stream to get your Measurement ID, and install via Google Tag Manager if you'll add more tags later — it saves you from touching code again. Before you publish anything, decide which events actually matter (scroll depth, outbound clicks, time on page) and mark them as key events. And give GA4 24-48 hours before trusting any report beyond Realtime."
 ---
 
 If you're setting up Google Analytics 4 for the first time, the biggest mistake isn't a missing snippet — it's skipping the decisions that are hard to undo later: how your property is structured, what counts as a conversion, and whether your data is clean from day one.

@@ -18,6 +18,7 @@ export type PostMeta = {
   tags: string[];
   readingTime: string;
   heroVisual?: HeroVisual;
+  tldr?: string;
 };
 
 export type Post = PostMeta & {
@@ -46,6 +47,7 @@ export function getPostBySlug(slug: string): Post {
     tags: data.tags ?? [],
     readingTime: readingTime(content).text,
     heroVisual: data.heroVisual,
+    tldr: data.tldr,
     content,
   };
 }

@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllSlugs, getPostBySlug } from "@/lib/posts";
 import AudioNarration from "@/components/AudioNarration";
 import NewsletterForm from "@/components/NewsletterForm";
+import ReadModeToggle from "@/components/ReadModeToggle";
 import MonkUnderNeemTreeScene from "@/components/heroes/MonkUnderNeemTreeScene";
 import DividingCellScene from "@/components/heroes/DividingCellScene";
 
@@ -120,9 +121,17 @@ export default async function BlogPost({
           <AudioNarration title={post.title} content={post.content} />
         </div>
       </header>
-      <div className="hud-prose prose prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
-        <MDXRemote source={post.content} />
-      </div>
+      {post.tldr ? (
+        <ReadModeToggle tldr={post.tldr}>
+          <div className="hud-prose prose prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
+            <MDXRemote source={post.content} />
+          </div>
+        </ReadModeToggle>
+      ) : (
+        <div className="hud-prose prose prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
+          <MDXRemote source={post.content} />
+        </div>
+      )}
 
       <div className="mt-14 pt-10" style={{ borderTop: "1px solid var(--border)" }}>
         <NewsletterForm compact />
