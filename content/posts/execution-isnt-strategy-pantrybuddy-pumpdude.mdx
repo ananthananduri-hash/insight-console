@@ -1,0 +1,34 @@
+---
+title: "Execution Isn't Strategy: Upgrading Two Small Notion Products"
+description: "What the same lesson from my off-page SEO system looked like applied to a grocery price tracker and a fuel mileage log."
+date: "2026-11-16"
+pillar: "career"
+tags: ["Notion", "product", "side project", "systems"]
+tldr: "PantryBuddy (compares grocery prices across 4 delivery platforms) and Pumpdude (logs fuel mileage per station) both started as pure activity trackers — log a price, log a fill-up, get a number back. The same critique that improved my off-page SEO system applied here: tracking activity isn't the same as proving a system works. PantryBuddy now logs price history instead of a snapshot, tracks free-delivery thresholds so batching beats chasing the single cheapest item, and logs real monthly spend against theoretical savings. Pumpdude now treats each station as its own scored record instead of a label, flags a mileage drop automatically against a fixed baseline instead of requiring you to eyeball a chart, and tracks a monthly budget. Neither tool got more complicated to use day-to-day — they got better at telling you whether they're actually working."
+---
+
+I built [a strategic layer into an off-page SEO system](/blog/building-the-off-page-desk) after a review pointed out it tracked activity well but couldn't say whether any of that activity was worth doing. The same week, I looked back at two much smaller personal tools I'd built — PantryBuddy and Pumpdude — and noticed they had exactly the same gap, just in miniature.
+
+## Two tools, one shape of problem
+
+**PantryBuddy** compares grocery prices across four delivery platforms and tells you which one is cheapest for each item right now. **Pumpdude** logs every fuel fill-up and calculates what that tank actually delivered in kilometers per liter, after one car getting 15 km/l from its usual pump and 9 km/l from a different one — same car, same week — made the gap too obvious to ignore.
+
+Both worked. Both also had the same blind spot: they told you what was true *right now* and stopped there. A single price check can't tell you if "cheapest platform" is a real pattern or a one-day fluke. A chart you have to eyeball for outliers isn't actually catching anything — it's asking you to do the noticing yourself, which defeats the point of building the tool.
+
+## What changed in PantryBuddy
+
+- **Price history instead of a snapshot.** The original version overwrote one price field per platform every time you checked. Now every check gets logged, so "cheapest platform" is based on a pattern, not a single lucky day.
+- **Free-delivery thresholds, tracked explicitly.** The real savings leak in grocery delivery usually isn't the per-item price gap — it's paying four separate delivery fees because nobody's tracking which platform is close to its free-delivery minimum. That's now a real number you can check your cart against before you check out.
+- **A savings log.** "Potential savings" on any one item is a theoretical number. Logging actual monthly spend against it is what tells you whether the system is really saving money or just producing a plausible-looking column.
+
+## What changed in Pumpdude
+
+- **Stations became their own record, not a label.** Every fill-up used to carry a station name as plain text. Now each station is a tracked entity with its own rolled-up visit count, average mileage, and average price — a scorecard instead of a chart you have to squint at.
+- **A fixed baseline instead of a moving average.** Catching a bad tank by eye, from a chart, is exactly the kind of thing that should be automatic. Every fill-up now gets flagged if it comes in more than 15% below that vehicle's baseline mileage — a number you set once, not one that drifts with every new fill-up (including the bad one you're trying to catch).
+- **A monthly budget.** One bad tank is noise. A cost-per-km that creeps upward for three months straight is a pattern — bad pump, overdue maintenance, a driving habit — and a budget line is what surfaces that before it's three months of wasted money.
+
+## The part that generalizes
+
+Neither of these tools got harder to use. Logging a fill-up still takes the same five fields it always did. What changed is what the system does with that log afterward — whether it just stores what happened, or tells you something you'd have missed otherwise.
+
+That's the same question worth asking about any tracker before calling it finished: does it just record activity, or does it eventually tell you if the activity was worth it?
