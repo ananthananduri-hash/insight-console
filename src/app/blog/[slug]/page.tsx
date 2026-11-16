@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { getAllSlugs, getPostBySlug } from "@/lib/posts";
 import AudioNarration from "@/components/AudioNarration";
 import NewsletterForm from "@/components/NewsletterForm";
@@ -124,12 +125,18 @@ export default async function BlogPost({
       {post.tldr ? (
         <ReadModeToggle tldr={post.tldr}>
           <div className="hud-prose prose prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
-            <MDXRemote source={post.content} />
+            <MDXRemote
+            source={post.content}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          />
           </div>
         </ReadModeToggle>
       ) : (
         <div className="hud-prose prose prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
-          <MDXRemote source={post.content} />
+          <MDXRemote
+            source={post.content}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          />
         </div>
       )}
 
