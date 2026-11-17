@@ -8,9 +8,8 @@ export const metadata: Metadata = {
 };
 
 const BUY_LINKS = {
-  gumroad: "https://REPLACE-WITH-YOUR-GUMROAD-URL.gumroad.com/l/off-page-desk",
-  kreato: "https://kreato.co.in/REPLACE-WITH-YOUR-HANDLE",
-  dodo: "https://REPLACE-WITH-YOUR-DODO-CHECKOUT-URL",
+  kreato: "https://kreato.co.in/anantha-nanduri/e63c117d-5865-4096-b666-e2a198496b6b",
+  dodo: "https://checkout.dodopayments.com/buy/pdt_0Ns8DUR7cX0lR58Abru8O",
 };
 
 const FEATURES = [
@@ -105,7 +104,6 @@ export default function OffPageDeskPage() {
           marginBottom: "40px",
         }}
       >
-        <BuyButton href={BUY_LINKS.gumroad} label="Buy on Gumroad" sublabel="$69 · global checkout" />
         <BuyButton href={BUY_LINKS.kreato} label="Buy on Kreato" sublabel="₹5,999 · UPI, cards, netbanking" />
         <BuyButton href={BUY_LINKS.dodo} label="Buy via Dodo Payments" sublabel="$69 · global checkout" />
       </div>
@@ -161,9 +159,9 @@ export default function OffPageDeskPage() {
           version going forward.
         </p>
         <p>
-          <strong>Why three places to buy it?</strong> Same template, same price point adjusted
-          per currency. Buy wherever is easiest for you — Kreato for UPI/Indian cards, Gumroad or
-          Dodo Payments for everything else.
+          <strong>Why two places to buy it?</strong> Same template, same price point adjusted per
+          currency. Buy wherever is easiest for you — Kreato for UPI/Indian cards, Dodo Payments
+          for everything else.
         </p>
       </div>
     </div>
